@@ -5,6 +5,12 @@ public class Block {
     private Coor coordinate;
     private boolean checked;
 
+
+    public Block(int x, int y) {
+        checked = false;
+        coordinate = new Coor(x, y);
+    }
+
     /**
      * @return Coor return the coordinate
      */

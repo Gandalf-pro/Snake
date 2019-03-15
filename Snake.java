@@ -48,13 +48,9 @@ public class Snake {
     }
 
     public void snakeAdd() {
-        Block b = new Block();
-        b.getCoordinate().setXY(this.body.get(this.body.size() - 1).getCoordinate().getPrevPosx() / 20,
-                this.body.get(this.body.size() - 1).getCoordinate().getPrevPosx() / 20);
-        /* b.getCoordinate().setX(this.body.get(this.body.size() - 1).getCoordinate().getPrevPosx() / 20);
-        b.getCoordinate().setY(this.body.get(this.body.size() - 1).getCoordinate().getPrevPosy() / 20); */
-        b.getCoordinate().setPrevPosx(body.get(body.size() - 1).getCoordinate().getPreprePosx());
-        b.getCoordinate().setPrevPosy(body.get(body.size() - 1).getCoordinate().getPreprePosy());
+        int x = this.body.get(this.body.size() - 1).getCoordinate().getPrevx();
+        int y = this.body.get(this.body.size() - 1).getCoordinate().getPrevy();
+        Block b = new Block(x,y);
         body.add(b);
     }
 

@@ -2,8 +2,6 @@
  * Coor
  */
 public class Coor {
-    private int preprePosx;
-    private int preprePosy;
     private int prevPosx;
     private int prevPosy;
     private int posx;
@@ -17,34 +15,8 @@ public class Coor {
 
     }
 
-    /**
-     * @return the preprePosx
-     */
-    public int getPreprePosx() {
-        return preprePosx;
-    }
-
-    /**
-     * @param preprePosx the preprePosx to set
-     */
-    public void setPreprePosx(int preprePosx) {
-        this.preprePosx = preprePosx;
-    }
-
-    /**
-     * @return the preprePosy
-     */
-    public int getPreprePosy() {
-        return preprePosy;
-    }
-
-    /**
-     * @param preprePosy the preprePosy to set
-     */
-    public void setPreprePosy(int preprePosy) {
-        this.preprePosy = preprePosy;
-    }
-
+   
+  
     /**
      * @return the prevx
      */
@@ -119,8 +91,6 @@ public class Coor {
      * @param x the x to set
      */
     public void setX(int x) {
-        this.preprePosx = this.prevPosx;
-        this.preprePosy = this.prevPosy;
         this.prevx = this.x;
         this.prevy = this.y;
         this.prevPosx = posx;
@@ -139,24 +109,21 @@ public class Coor {
      * @return int return the y
      */
     public int getY() {
-        return y; 
+        return y;
     }
 
     /**
      * @param y the y to set
      */
     public void setY(int y) {
-        this.preprePosx = this.prevPosx;
-        this.preprePosy = this.prevPosy;
         this.prevx = this.x;
         this.prevy = this.y;
         this.prevPosx = posx;
         this.prevPosy = posy;
         this.y = y;
         this.posy = y * 20;
-        System.out.println("x:"+this.posx+"y:"+this.posy);
+        System.out.println("x:" + this.posx + "y:" + this.posy);
     }
-
 
     /**
      * @return int return the posx
@@ -186,5 +153,4 @@ public class Coor {
         this.posy = posy;
     }
 
-   
 }
