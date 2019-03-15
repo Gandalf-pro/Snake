@@ -64,13 +64,13 @@ public class Game {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            window.clearScreen(snake);
         }
     }
 
     // render
     public void render() {
-        window.clearPrevBlock(snake);
+        //window.clearPrevBlock(snake);
         System.out.println("rendering");
         drawSnake();
         window.drawFruit();

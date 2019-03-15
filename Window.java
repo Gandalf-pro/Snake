@@ -83,8 +83,22 @@ public class Window extends JFrame {
         int y = s.getBody().get(s.getBody().size() - 1).getCoordinate().getPrevPosy();
         g.setColor(Color.BLACK);
         g.clearRect(x, y, space, space);
-        
+
     }
+
+    public void clearScreen(Snake s) {
+        if (!s.isHasMoved()) {
+            System.out.println("Dit not clear");
+            return;
+        }
+        Graphics g = canvas.getGraphics();
+        if (g == null) {
+            System.out.println("Graphics objects is null");
+            return;
+        }
+        g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+
 
     public void drawBlock(Coor cor, Color c) {
         Graphics g = canvas.getGraphics();
