@@ -22,7 +22,7 @@ public class Game {
             window.setFruit(null);
             snake.snakeAdd();
             putRandomFruit();
-            snake.setHasMoved(false);
+            //snake.setHasMoved(false);
         }
     }
 
@@ -69,11 +69,13 @@ public class Game {
 
     // render
     public void render() {
-        window.clearPrevBlock(snake);
+        //window.clearPrevBlock(snake);
         System.out.println("rendering");
+        window.clearScreen(snake);
         drawSnake();
         window.drawFruit();
         System.out.println(snake.getBody().size());
+        window.getBs().show();
         // window.drawLines();
 
     }

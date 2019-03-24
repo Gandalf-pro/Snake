@@ -76,8 +76,7 @@ public class Coor {
     public Coor(int x, int y) {
         this.x = x;
         this.y = y;
-        this.prevPosx = 0;
-        this.prevPosy = 0;
+        this.setCor();
     }
 
     /**
@@ -91,18 +90,14 @@ public class Coor {
      * @param x the x to set
      */
     public void setX(int x) {
-        this.prevx = this.x;
-        this.prevy = this.y;
-        this.prevPosx = posx;
-        this.prevPosy = posy;
         this.x = x;
-        this.posx = x * 20;
-        System.out.println("x:" + this.posx + "y:" + this.posy);
+        this.setCor();
     }
 
     public void setXY(int x, int y) {
         this.x = x;
         this.y = y;
+        this.setCor();
     }
 
     /**
@@ -112,17 +107,30 @@ public class Coor {
         return y;
     }
 
+    public void setCor() {
+        this.posx = this.x * 20;
+        this.posy = this.y * 20;
+    }
+    
+
+    public void setPrevCor() {
+        this.prevx = this.x;
+        this.prevy = this.y;
+    }
+
+
+    public void setPrevPoses() {
+        this.prevPosx = this.posx;
+        this.prevPosy = this.posy;
+    }
+
+
     /**
      * @param y the y to set
      */
     public void setY(int y) {
-        this.prevx = this.x;
-        this.prevy = this.y;
-        this.prevPosx = posx;
-        this.prevPosy = posy;
         this.y = y;
-        this.posy = y * 20;
-        System.out.println("x:" + this.posx + "y:" + this.posy);
+        this.setCor();
     }
 
     /**

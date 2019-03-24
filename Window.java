@@ -1,6 +1,7 @@
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -14,6 +15,8 @@ public class Window extends JFrame {
     private int space;
     private int bCount;
     private Block fruit;
+    private BufferStrategy bs;
+    private Graphics g;
     int count;
 
     public Graphics getGraphicsObj() {
@@ -68,7 +71,6 @@ public class Window extends JFrame {
             System.out.println("Dit not clear");
             return;
         }
-        Graphics g = canvas.getGraphics();
         if (g == null) {
             System.out.println("Graphics objects is null");
             return;
@@ -91,7 +93,6 @@ public class Window extends JFrame {
             System.out.println("Dit not clear");
             return;
         }
-        Graphics g = canvas.getGraphics();
         if (g == null) {
             System.out.println("Graphics objects is null");
             return;
@@ -101,7 +102,6 @@ public class Window extends JFrame {
 
 
     public void drawBlock(Coor cor, Color c) {
-        Graphics g = canvas.getGraphics();
         if (g == null) {
             System.out.println("Graphics objects is null");
             return;
@@ -111,7 +111,6 @@ public class Window extends JFrame {
     }
 
     public void drawLines() {
-        Graphics g = canvas.getGraphics();
         if (g == null) {
             System.out.println("Graphics objects is null");
             return;
@@ -124,6 +123,23 @@ public class Window extends JFrame {
         g.dispose();
     }
 
+    public void setGraphics() {
+        g = bs.getDrawGraphics();
+    }
+
+
+    public void setBs() {
+        bs = canvas.getBufferStrategy();
+        if (bs == null) {
+            System.out.println("bs not found");
+            System.out.println("Creating bs");
+            canvas.createBufferStrategy(2);
+            bs = canvas.getBufferStrategy();
+            System.out.println(bs);
+            return;
+        }
+    }
+
     public Window(String name, KeyThing kt) {
         count = 0;
         space = 20;
@@ -132,11 +148,11 @@ public class Window extends JFrame {
         frameSettings(name);
         canvasSettings();
         this.setVisible(true);
-
+        setBs();
+        setGraphics();
     }
 
     public void drawFruit() {
-        Graphics g = canvas.getGraphics();
         if (g == null || fruit == null) {
             return;
         }
@@ -146,8 +162,6 @@ public class Window extends JFrame {
 
         g.drawLine(fruit.getCoordinate().getPosx() + space - 1, fruit.getCoordinate().getPosy() + 1,
                 fruit.getCoordinate().getPosx() + 1, fruit.getCoordinate().getPosy() + space - 1);
-
-        g.dispose();
     }
 
     /**
@@ -162,6 +176,42 @@ public class Window extends JFrame {
      */
     public void setFruit(Block fruit) {
         this.fruit = fruit;
+    }
+
+
+    /**
+     * @return int return the space
+     */
+    public int getSpace() {
+        return space;
+    }
+
+    /**
+     * @param space the space to set
+     */
+    public void setSpace(int space) {
+        this.space = space;
+    }
+
+    /**
+     * @return int return the bCount
+     */
+    public int getBCount() {
+        return bCount;
+    }
+
+    /**
+     * @param bCount the bCount to set
+     */
+    public void setBCount(int bCount) {
+        this.bCount = bCount;
+    }
+
+    /**
+     * @return BufferStrategy return the bs
+     */
+    public BufferStrategy getBs() {
+        return bs;
     }
 
 }

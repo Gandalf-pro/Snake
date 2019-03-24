@@ -50,21 +50,27 @@ public class Snake {
     public void snakeAdd() {
         int x = this.body.get(this.body.size() - 1).getCoordinate().getPrevx();
         int y = this.body.get(this.body.size() - 1).getCoordinate().getPrevy();
-        Block b = new Block(x,y);
+        Block b = new Block(x, y);
         body.add(b);
     }
 
     public void moveBody() {
+
+        if (body.size() == 3) {
+            System.out.println("hello");
+        }
         for (int i = 1; i < body.size(); i++) {
+            this.body.get(i).getCoordinate().setPrevCor();
+            this.body.get(i).getCoordinate().setPrevPoses();
             this.body.get(i).getCoordinate().setX(this.body.get(i - 1).getCoordinate().getPrevx());
             this.body.get(i).getCoordinate().setY(this.body.get(i - 1).getCoordinate().getPrevy());
-
         }
     }
 
     public void moveSnakeHead() {
+        this.body.get(0).getCoordinate().setPrevCor();
+        this.body.get(0).getCoordinate().setPrevPoses();
         switch (dir) {
-
         case north:
             this.body.get(0).getCoordinate().setY(this.body.get(0).getCoordinate().getY() - 1);
             hasMoved = true;
