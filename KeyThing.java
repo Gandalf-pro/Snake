@@ -28,19 +28,28 @@ public class KeyThing implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
         switch (e.getKeyChar()) {
         case 'w':
+            if (snake.getDir() == Direction.south && snake.getBody().size() > 1)
+                break;
             snake.setDir(Direction.north);
             break;
 
         case 'a':
+            if (snake.getDir() == Direction.east && snake.getBody().size() > 1)
+                break;
             snake.setDir(Direction.west);
             break;
 
         case 's':
+            if (snake.getDir() == Direction.north && snake.getBody().size() > 1)
+                break;
             snake.setDir(Direction.south);
             break;
         case 'd':
+            if (snake.getDir() == Direction.west && snake.getBody().size() > 1)
+                break;
             snake.setDir(Direction.east);
             break;
         case ' ':
