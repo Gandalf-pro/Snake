@@ -4,6 +4,7 @@ public class Snake {
     private ArrayList<Block> body;
     private Direction dir;
     private boolean hasMoved;
+    public boolean processed;
 
     /**
      * @return the hasMoved
@@ -67,33 +68,56 @@ public class Snake {
         }
     }
 
-    public void moveSnakeHead() {
+    public boolean isLost() {
+        for (int i = 1; i < this.body.size(); i++) {
+            if ((this.body.get(0).getCoordinate().getPosx() == this.body.get(i).getCoordinate().getPosx()
+                    && this.body.get(0).getCoordinate().getPosy() == this.body.get(i).getCoordinate().getPosy())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void moveSnakeHead(Window window) {
         this.body.get(0).getCoordinate().setPrevCor();
         this.body.get(0).getCoordinate().setPrevPoses();
+        int wW = window.getWidth() / 20;
+        int wH = window.getHeight() / 20;
         switch (dir) {
         case north:
-            this.body.get(0).getCoordinate().setY(this.body.get(0).getCoordinate().getY() - 1);
+            if ((this.body.get(0).getCoordinate().getY() - 1) < 0) {
+                this.body.get(0).getCoordinate().setY(wH);
+            } else
+                this.body.get(0).getCoordinate().setY((this.body.get(0).getCoordinate().getY() - 1));
             hasMoved = true;
             break;
         case east:
-            this.body.get(0).getCoordinate().setX(this.body.get(0).getCoordinate().getX() + 1);
+            this.body.get(0).getCoordinate().setX((this.body.get(0).getCoordinate().getX() + 1) % wW);
             hasMoved = true;
             break;
         case south:
-            this.body.get(0).getCoordinate().setY(this.body.get(0).getCoordinate().getY() + 1);
+            this.body.get(0).getCoordinate().setY((this.body.get(0).getCoordinate().getY() + 1) % wH);
             hasMoved = true;
             break;
         case west:
-            this.body.get(0).getCoordinate().setX(this.body.get(0).getCoordinate().getX() - 1);
+            if ((this.body.get(0).getCoordinate().getX() - 1) < 0) {
+                this.body.get(0).getCoordinate().setX(wW);
+            } else
+                this.body.get(0).getCoordinate().setX((this.body.get(0).getCoordinate().getX() - 1));
             hasMoved = true;
             break;
 
         default:
             break;
         }
+        if (isLost()) {
+            System.out.println("You Lost");
+            System.exit(1);
+        }
     }
 
     public Snake() {
+        processed = false;
         hasMoved = false;
         dir = Direction.noting;
         body = new ArrayList<Block>();

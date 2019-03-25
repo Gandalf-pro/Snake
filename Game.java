@@ -44,8 +44,9 @@ public class Game {
     }
 
     private void move() {
-        snake.moveSnakeHead();
+        snake.moveSnakeHead(window);
         snake.moveBody();
+        snake.processed = true;
     }
 
     // starts the game

@@ -28,7 +28,6 @@ public class KeyThing implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
         switch (e.getKeyChar()) {
         case 'w':
             if (snake.getDir() == Direction.south && snake.getBody().size() > 1)
