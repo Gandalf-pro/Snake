@@ -60,7 +60,7 @@ public class Game {
             render();
             long wait = (System.nanoTime() - nanostart);
             try {
-                Thread.sleep(380 - (wait / 1000000));
+                Thread.sleep(250 - (wait / 1000000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

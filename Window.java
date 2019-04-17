@@ -1,5 +1,6 @@
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
@@ -53,7 +54,6 @@ public class Window extends JFrame {
 
     private void frameSettings(String name) {
         this.setName(name);
-        this.setSize(640, 480);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -61,6 +61,8 @@ public class Window extends JFrame {
 
     private void canvasSettings() {
         canvas = new Canvas();
+        canvas.setSize(640, 480);
+        canvas.setPreferredSize(new Dimension(640, 480));
         this.add(canvas);
         canvas.setBackground(Color.BLACK);
         canvas.addKeyListener(keyThing);
@@ -100,7 +102,6 @@ public class Window extends JFrame {
         g.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
-
     public void drawBlock(Coor cor, Color c) {
         if (g == null) {
             System.out.println("Graphics objects is null");
@@ -127,7 +128,6 @@ public class Window extends JFrame {
         g = bs.getDrawGraphics();
     }
 
-
     public void setBs() {
         bs = canvas.getBufferStrategy();
         if (bs == null) {
@@ -147,6 +147,7 @@ public class Window extends JFrame {
         this.keyThing = kt;
         frameSettings(name);
         canvasSettings();
+        this.pack();
         this.setVisible(true);
         setBs();
         setGraphics();
@@ -177,7 +178,6 @@ public class Window extends JFrame {
     public void setFruit(Block fruit) {
         this.fruit = fruit;
     }
-
 
     /**
      * @return int return the space
